@@ -16,7 +16,11 @@ The list of tags is found in [`config.py`](config.py).
     ACCESS_KEY="5c32337f2-aa32-4066-ass3-25fdcebee2fc"
     ```
 
-2. To install the dependencies, [download Poetry](https://python-poetry.org/docs/), install the dependencies, and activate the virtual environment: ```poetry install && poetry env activare```
+2. To install the dependencies, [download Poetry](https://python-poetry.org/docs/), install the dependencies, and activate the virtual environment: 
+
+```bash
+poetry install && poetry env activate
+```
 
 ### Run the code
 
@@ -58,6 +62,19 @@ Are you looking for [The Guardian Climate News Corpus](https://huggingface.co/da
 The Guardian Climate News Corpus was created using this same script, but the results are not deterministic. So, if you are looking to replicate the ClimateEval evaluation results, use [the dataset provided on HuggingFace](https://huggingface.co/datasets/NLP-RISE/guardian_climate_news_corpus).
 
 **This script is intended for creating similar datasets and extending the existing one.** To evaluate your model on your newly created dataset using the LM Evaluation Harness as part of ClimateEval, you need to first upload the dataset to HuggingFace. You can follow [this format](https://huggingface.co/datasets/NLP-RISE/guardian_climate_news_corpus/tree/main). Once your new dataset has been uploaded, manipulate [the LM harness YAML configs found here](https://github.com/MurathanKurfali/ClimateEval-Yaml/tree/main/guardian_climate_news) to refer to your newly created dataset instead.
+
+## Citation
+
+```bibtex
+@inproceedings{
+kurfali2025climateeval,
+title={ClimateEval: A Comprehensive Benchmark for {NLP} Tasks Related to Climate Change},
+author={Murathan Kurfali and Shorouq Zahra and Joakim Nivre and Gabriele Messori},
+booktitle={The 2nd Workshop of Natural Language Processing meets Climate Change},
+year={2025},
+url={https://openreview.net/forum?id=183GtY94tB}
+}
+```
 
 ## Disclaimer
 
