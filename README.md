@@ -18,9 +18,10 @@ The list of tags is found in [`config.py`](config.py).
 
 2. To install the dependencies, [download Poetry](https://python-poetry.org/docs/), install the dependencies, and activate the virtual environment: 
 
-```bash
-poetry install && poetry env activate
-```
+    ```bash
+    poetry install
+    poetry env activate
+    ```
 
 ### Run the code
 
@@ -59,7 +60,7 @@ Otherwise, you are welcome to start a new issue on github.
 
 Are you looking for [The Guardian Climate News Corpus](https://huggingface.co/datasets/NLP-RISE/guardian_climate_news_corpus), as part of the [ClimateEval](https://github.com/MurathanKurfali/ClimateEval-Yaml) pipeline?
 
-The Guardian Climate News Corpus was created using this same script, but the results are not deterministic. So, if you are looking to replicate the ClimateEval evaluation results, use [the dataset provided on HuggingFace](https://huggingface.co/datasets/NLP-RISE/guardian_climate_news_corpus).
+The Guardian Climate News Corpus was created using this same script, but the results are not deterministic. So, if you are looking to replicate the ClimateEval evaluation results [described in our paper](https://openreview.net/forum?id=183GtY94tB), use [the dataset provided on HuggingFace](https://huggingface.co/datasets/NLP-RISE/guardian_climate_news_corpus).
 
 **This script is intended for creating similar datasets and extending the existing one.** To evaluate your model on your newly created dataset using the LM Evaluation Harness as part of ClimateEval, you need to first upload the dataset to HuggingFace. You can follow [this format](https://huggingface.co/datasets/NLP-RISE/guardian_climate_news_corpus/tree/main). Once your new dataset has been uploaded, manipulate [the LM harness YAML configs found here](https://github.com/MurathanKurfali/ClimateEval-Yaml/tree/main/guardian_climate_news) to refer to your newly created dataset instead.
 
