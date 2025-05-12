@@ -20,9 +20,9 @@ The list of tags is found in [`config.py`](config.py).
 
 To get the data through the API, run:
 
-    ```bash
-    poetry run python3 get_data.py
-    ```
+```bash
+poetry run python3 get_data.py
+```
 
 To adjust the tags from which data is pulled, or add new tag categories, modify the [`config.py`](config.py) file as needed.
 
@@ -39,3 +39,8 @@ Use the help function if you are lost:
 ```bash
 poetry run python3 prep_data.py --help
 ```
+
+## Disclaimer
+
+All articles extracted here are courtesy of Guardian News & Media Ltd.
+Open License Terms can be found [here](https://www.theguardian.com/info/2022/nov/01/open-licence-terms)
