@@ -48,6 +48,12 @@ def main():
         help="A directory for the data to land (split into train, dev, test)",
     )
 
+    parser.add_argument(
+        "--filter_by_tags",
+        type=bool,
+        default=True,
+        help="Whether or not to filter by tags",
+    )
     args = parser.parse_args()
 
     extracted_data: list[dict[str, Union[str, list]]] = []
@@ -85,10 +91,14 @@ def main():
         lambda x: "UNRELATED_TO_CLIMATE" if x == "SIMILAR_BUT_NOT_CLIMATE" else x
     )
 
-    df["use"] = df.apply(
-        lambda row: filter_by_tags(row["tags"], row["category"]), axis=1
-    )
+    if args.filter_by_tags:
 
+        df["use"] = df.apply(
+            lambda row: filter_by_tags(row["tags"], row["category"]), axis=1
+        )
+    else:
+        df["use"] = True
+    
     df.to_csv(f"{args.output_dir}/all.csv", index=False)
     X_train, X_dev, X_test, y_train, y_dev, y_test = split_data(df[df["use"] == True])
     train, dev, test = pd.DataFrame(X_train), pd.DataFrame(X_dev), pd.DataFrame(X_test)
