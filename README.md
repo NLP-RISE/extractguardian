@@ -36,7 +36,13 @@ To adjust the tags from which data is pulled, or add new tag categories, modify 
 To split the data into a train, dev, and test set, run:
 
 ```bash
-poetry run python3 prep_data.py --data_dir articles --output_dir dataset
+poetry run python3 prep_data.py --data_dir articles --output_dir dataset --filter_by_tags Y
+```
+
+To split the data **without filtering out articles that share tags across categories**, change the "filter by tags" flag:
+
+```bash
+poetry run python3 prep_data.py --data_dir articles --output_dir dataset --filter_by_tags N
 ```
 
 The script above supports pulling articles by tags and keywords. Prepping data pulled based on keywords is not fully implemented.
@@ -48,7 +54,7 @@ The script above supports pulling articles by tags and keywords. Prepping data p
 ### Plot the distribution of labels per year
 
 ```bash
-poetry run python3 plot_data.py
+poetry run python3 plot_data.py --data_dir dataset --data_split all
 ```
 
 ### Get help
