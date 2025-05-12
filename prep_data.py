@@ -5,6 +5,8 @@ import json
 import pandas as pd
 from typing import Union
 from sklearn.model_selection import train_test_split
+from pathlib import Path
+
 
 def filter_by_tags(tags: list[str], category: str) -> bool:
     """Returns False if `tags` contains any tags it shares with other categories. Else, returns True"""
@@ -50,11 +52,14 @@ def main():
 
     parser.add_argument(
         "--filter_by_tags",
-        type=bool,
-        default=True,
-        help="Whether or not to filter by tags",
+        type=str,
+        default="Y",
+        choices=["Y", "N"],
+        help="Whether or not to filter by tags. Case sensitive.",
     )
     args = parser.parse_args()
+
+    Path(args.output_dir).mkdir(parents=True, exist_ok=True)
 
     extracted_data: list[dict[str, Union[str, list]]] = []
     for d in os.listdir(args.data_dir):
@@ -83,7 +88,7 @@ def main():
                                     "category": d,
                                     "date": article["webPublicationDate"],
                                 }
-                    )
+                            )
     df = pd.DataFrame(extracted_data)
 
     # merge "UNRELATED_TO_CLIMATE and SIMILAR_BUT_NOT_CLIMATE"
@@ -91,14 +96,17 @@ def main():
         lambda x: "UNRELATED_TO_CLIMATE" if x == "SIMILAR_BUT_NOT_CLIMATE" else x
     )
 
-    if args.filter_by_tags:
+    if args.filter_by_tags == "Y":
 
         df["use"] = df.apply(
             lambda row: filter_by_tags(row["tags"], row["category"]), axis=1
         )
-    else:
+    elif args.filter_by_tags == "N":
         df["use"] = True
-    
+
+    print(f"Total rows: {len(df.index)}")
+    print(f"Used rows: {len(df[df['use'] == True])}")
+
     df.to_csv(f"{args.output_dir}/all.csv", index=False)
     X_train, X_dev, X_test, y_train, y_dev, y_test = split_data(df[df["use"] == True])
     train, dev, test = pd.DataFrame(X_train), pd.DataFrame(X_dev), pd.DataFrame(X_test)

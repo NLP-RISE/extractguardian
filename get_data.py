@@ -4,7 +4,7 @@ import os
 import time
 
 import requests
-
+from pathlib import Path 
 from config import KEY, TAGS, KEYWORDS
 
 # Define the Guardian API key and base URL
@@ -127,32 +127,32 @@ def main(TAGS=TAGS):
     )
 
     args = parser.parse_args()
-    output_dir = args.output_dir
-
+    Path(args.output_dir).mkdir(parents=True, exist_ok=True) 
+        
     if args.mode == "keywords":
-        os.makedirs(output_dir, exist_ok=True)
+        os.makedirs(args.output_dir, exist_ok=True)
         collect_data(
             KEYWORDS,
-            output_dir=output_dir,
+            output_dir=args.output_dir,
             is_keyword=True,
             start_date=start_date,
             end_date=end_date,
         )
     elif args.mode == "tags" and args.tag == "all":
         for t in TAGS.keys():
-            os.makedirs(f"{output_dir}/{t}", exist_ok=True)
+            os.makedirs(f"{args.output_dir}/{t}", exist_ok=True)
             collect_data(
                 TAGS[t],
-                output_dir=f"{output_dir}/{t}",
+                output_dir=f"{args.output_dir}/{t}",
                 is_keyword=False,
                 start_date=start_date,
                 end_date=end_date,
             )
     elif args.mode == "tags" and args.tag not in ["", "all"]:
-        os.makedirs(f"{output_dir}/{args.tag}", exist_ok=True)
+        os.makedirs(f"{args.output_dir}/{args.tag}", exist_ok=True)
         collect_data(
             TAGS[args.tag],
-            output_dir=f"{output_dir}/{args.tag}",
+            output_dir=f"{args.output_dir}/{args.tag}",
             is_keyword=False,
             start_date=start_date,
             end_date=end_date,
