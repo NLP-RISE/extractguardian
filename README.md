@@ -23,7 +23,7 @@ The list of tags is found in [`config.py`](config.py).
 To get the data through the API, run:
 
 ```bash
-poetry run python3 get_data.py
+poetry run python3 get_data.py --mode tags --output_dir articles --tag all
 ```
 
 To adjust the tags from which data is pulled, or add new tag categories, modify the [`config.py`](config.py) file as needed.
@@ -31,22 +31,31 @@ To adjust the tags from which data is pulled, or add new tag categories, modify 
 To split the data into a train, dev, and test set, run:
 
 ```bash
-poetry run python3 prep_data.py --mode tags --output_dir articles --tag all
+poetry run python3 prep_data.py --data_dir articles --output_dir dataset
 ```
 
 The script above supports pulling articles by tags and keywords. Prepping data pulled based on keywords is not fully implemented.
 
+> [!WARNING]  
+> Keep in mind:
+> In [`prep_data.py`](prep_data.py), the `UNRELATED_TO_CLIMATE` and `SIMILAR_BUT_NOT_CLIMATE` categories are merged.
+
+### Get help
+
 Use the help function if you are lost:
 
 ```bash
+poetry run python3 get_data.py --help
 poetry run python3 prep_data.py --help
 ```
+
+Otherwise, you are welcome to start a new issue on github.
 
 ## The Guardian Climate News Corpus
 
 Are you looking for [The Guardian Climate News Corpus](https://huggingface.co/datasets/NLP-RISE/guardian_climate_news_corpus), as part of the [ClimateEval](https://github.com/MurathanKurfali/ClimateEval-Yaml) pipeline?
 
-The Guardian Climate News Corpus was created using this same script, but the results are not deterministic. So, if you are looking to replicate the ClimateEval evaluation results, use [the dataset provided on HuggingFace](https://huggingface.co/datasets/NLP-RISE/guardian_climate_news_corpus). 
+The Guardian Climate News Corpus was created using this same script, but the results are not deterministic. So, if you are looking to replicate the ClimateEval evaluation results, use [the dataset provided on HuggingFace](https://huggingface.co/datasets/NLP-RISE/guardian_climate_news_corpus).
 
 **This script is intended for creating similar datasets and extending the existing one.** To evaluate your model on your newly created dataset using the LM Evaluation Harness as part of ClimateEval, you need to first upload the dataset to HuggingFace. You can follow [this format](https://huggingface.co/datasets/NLP-RISE/guardian_climate_news_corpus/tree/main). Once your new dataset has been uploaded, manipulate [the LM harness YAML configs found here](https://github.com/MurathanKurfali/ClimateEval-Yaml/tree/main/guardian_climate_news) to refer to your newly created dataset instead.
 
