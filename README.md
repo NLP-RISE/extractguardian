@@ -45,6 +45,12 @@ The script above supports pulling articles by tags and keywords. Prepping data p
 > Keep in mind:
 > In [`prep_data.py`](prep_data.py), the `UNRELATED_TO_CLIMATE` and `SIMILAR_BUT_NOT_CLIMATE` categories are merged.
 
+### Plot the distribution of labels per year
+
+```bash
+poetry run python3 plot_data.py
+```
+
 ### Get help
 
 Use the help function if you are lost:
