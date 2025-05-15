@@ -80,12 +80,12 @@ The Guardian Climate News Corpus was created using this same script, but the res
 
 ```bibtex
 @inproceedings{
-kurfali2025climateeval,
-title={ClimateEval: A Comprehensive Benchmark for {NLP} Tasks Related to Climate Change},
-author={Murathan Kurfali and Shorouq Zahra and Joakim Nivre and Gabriele Messori},
-booktitle={The 2nd Workshop of Natural Language Processing meets Climate Change},
-year={2025},
-url={https://openreview.net/forum?id=183GtY94tB}
+    kurfali2025climateeval,
+    title={ClimateEval: A Comprehensive Benchmark for {NLP} Tasks Related to Climate Change},
+    author={Murathan Kurfali and Shorouq Zahra and Joakim Nivre and Gabriele Messori},
+    booktitle={The 2nd Workshop of Natural Language Processing meets Climate Change},
+    year={2025},
+    url={https://openreview.net/forum?id=183GtY94tB}
 }
 ```
 
